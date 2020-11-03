@@ -1,6 +1,6 @@
 /***********************************************************************************************************
 *执行用时：28 ms, 在所有 Go 提交中击败了49.38%的用户
-*内存消耗：7.4 MB, 在所有 Go 提交中击败了10.60%的用户
+*内存消耗：7.1 MB, 在所有 Go 提交中击败了58.74%的用户
 ************************************************************************************************************
 */
 
@@ -13,27 +13,22 @@
 
 func maxSubArray(nums []int) int {
 
-    lenNums := len(nums)
-    sliceDup := make([]int, lenNums)
+    var dup int = 0
+    var max int = nums[0]
 
-    
-    sliceDup[0] = nums[0]
-    var max int = sliceDup[0]
+    for _, v := range nums {
 
-    for i := 1; i < lenNums; i++ {
-
-        if sliceDup[i-1] > 0 {
-            sliceDup[i] = sliceDup[i-1] + nums[i]
+        if dup > 0 {
+            dup += v
         } else {
-            sliceDup[i] =  nums[i]
+            dup = v
         }
 
-        if sliceDup[i] > max {
-            max = sliceDup[i]
+        if dup > max {
+            max = dup
         }
 
     }
-
 
     return max
 
